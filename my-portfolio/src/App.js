@@ -1,23 +1,44 @@
-import logo from './logo.svg';
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from './components/Home';
+import About from './components/About';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 import './App.css';
 
 function App() {
+
+  // Configure our Router
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      // Props to Home get passed here
+      element: <Home />
+    },
+    {
+      path: "/about",
+      // Props to About get passed here
+      element: <About />
+    },
+    {
+      path: "/projects",
+      // Props to Projects get passed here
+      element: <Projects />
+    },
+    {
+      path: "/contact",
+      // Props to Contact get passed here
+      element: <Contact />
+    }
+  ]);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="content">
+        {/* RouterProvider switches between Home, About, NewPostForm, and History */}
+        <RouterProvider router={router} />
+      </div>
     </div>
   );
 }
